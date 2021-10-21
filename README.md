@@ -105,3 +105,4 @@ As an admin I want to be able to ban or suspend users based on automated monitor
 - Integrating surveys in order to create more elaborate profiles
 ### Pipe Dream Features
 - Integrating user provided content with the image recognition capabilities provided by Azure/Amazon in order to automate app moderation
+- Turning everything into a social media project where people can share screenshots and YouTube clips

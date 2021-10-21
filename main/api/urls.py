@@ -6,6 +6,7 @@ from main.api import views as main_views
 
 router = DefaultRouter()
 router.register(r'reviews', main_views.ReviewViewSet)
+router.register(r'profiles', main_views.CustomUserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

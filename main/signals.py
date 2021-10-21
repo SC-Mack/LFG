@@ -12,3 +12,4 @@ def add_slug_to_review(sender, instance, *args, **kwargs):
         slug = slugify(instance.content)
         random_string = get_random_string(length=8)
         instance.slug = slug + '-' + random_string
+        

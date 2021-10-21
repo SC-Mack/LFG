@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
 from main.models import Review
+from users.models import CustomUser
 
 class ReviewSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     date_created = serializers.SerializerMethodField()
     slug = serializers.SlugField(read_only=True)
-    # user_has_reviewed = serializers.SerializerMethodField()
     
     class Meta:
         model = Review
@@ -15,8 +15,13 @@ class ReviewSerializer(serializers.ModelSerializer):
     #Return a stringified version of the date created    
     def get_date_created(self, instance):
         return instance.date_created.strftime('%B %d, %Y')
-    
-    # Check to see if a user has already reviewed a profile
-    # def get_user_has_reviewed(self, instance):
-    #     request = self.context.get('request')
-    #     return instance..filter(author=request.user).exists()
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    slug = serializers.SerializerMethodField()
+    class Meta:
+        model = CustomUser
+        exclude=['password']
+        
+    def get_slug(self, instance):
+        return instance.username
+        
