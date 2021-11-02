@@ -1,2 +1,2 @@
-web: gunicorn lfg.wsgi
+web:gunicorn lfg.wsgi
 release: python manage.py migrate
