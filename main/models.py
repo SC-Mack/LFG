@@ -1,17 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-from django.conf import settings
-from LFG.core.models import TimeStampModel
-from users.models import CustomUser
-
-
-class Review(TimeStampModel):
-    score = models.IntegerField(verbose_name='User Rating')
-    content = models.CharField(max_length=240, verbose_name='User Review Description', blank=True, null=True)
-    author  = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='review', default=0)
-    target = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='review_target', blank=True, null=True)
-    slug = models.SlugField(max_length=255, unique=True)
+class CustomUser(AbstractUser):
+    first_name = None
+    last_name = None
     
-    
+    # avatar = models.ImageField()
+    intro = models.CharField(max_length=140, verbose_name='Intro Line', blank=True, null=True)
+    bio = models.TextField(blank=True, null=True)
+    current_game = models.CharField(max_length=100, blank=True, null=True)
+    play_style = models.CharField(max_length=50, blank=True, null=True)
+    rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    date_joined = models.DateField(auto_now_add=True)
+
     def __str__(self):
-        return self.content
+        return self.username
+    
+class Review(models.Model):
+    comment = models.CharField(max_length=240)
+    ...
+
+class Conversation(models.Model):
+    ...
