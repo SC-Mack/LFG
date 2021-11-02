@@ -1,5 +1,6 @@
 from django.contrib import admin
 
-from main.models import Review
+from .models import CustomUser
 
-admin.site.register(Review)
+admin.site.register(CustomUser)
+
