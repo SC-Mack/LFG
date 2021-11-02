@@ -17,8 +17,9 @@ class CustomUser(AbstractUser):
         return self.username
     
 class Review(models.Model):
-    comment = models.CharField(max_length=240)
-    ...
+    comment = models.CharField(max_length=240, blank=True, null=True)
+    score = models.IntegerField(blank=True, null=True)
+
 
 class Conversation(models.Model):
-    ...
+    message = models.CharField(max_length=300, blank=True, null=True)
