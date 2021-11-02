@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import CASCADE, PROTECT
 
 class CustomUser(AbstractUser):
     first_name = None
@@ -19,7 +20,11 @@ class CustomUser(AbstractUser):
 class Review(models.Model):
     comment = models.CharField(max_length=240, blank=True, null=True)
     score = models.IntegerField(blank=True, null=True)
-
+    date_time = models.DateTimeField(auto_now_add=True)
+    target = models.ForeignKey(CustomUser, blank=True, null=True, on_delete=CASCADE)
 
 class Conversation(models.Model):
     message = models.CharField(max_length=300, blank=True, null=True)
+    date_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    sender = models.ForeignKey(CustomUser,related_name='sender', on_delete=PROTECT)
+    receiver = models.ForeignKey(CustomUser, related_name='receiver', on_delete=PROTECT)  

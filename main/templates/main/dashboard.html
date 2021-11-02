@@ -9,10 +9,30 @@ Welcome, {{ user.username|default:'Noob' }}!
     {% if user.is_authenticated %}
         <a href="{% url 'profile' user.username %}">View Profile</a>
         <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'password_switch' %}">Change Password</a>
+        <a href="{% url 'change_password' %}">Change Password</a>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
     {% endif %}
+</div>
+<div>
+    <label for="user_search">Search for a user by name:</label>
+    <input type="text" id="user_search" name="user_search">
+    <button type="button">Search</button>
+</div>
+<div>
+    <label for="game_search">Search games being played:</label>
+    <input type="text" id="game_search" name="game_search">
+    <button type="button">Search</button>
+</div>
+<hr>
+<div>
+    Games being played on LFG:
+</div>
+<div>
+    Current Popular Games:
+</div>
+<div>
+    Games released in the last 7 days:
 </div>
 {% endblock %}

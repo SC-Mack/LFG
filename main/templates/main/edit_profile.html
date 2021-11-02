@@ -1,0 +1,21 @@
+<!--main/templates/profile.html-->
+
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+    <div>
+        <h2>Profile for {{user.username}}</h2>
+    </div>
+    <div>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <input type="submit" value="Update Profile">
+        </form>
+    </div>
+    <a href="{% url 'dashboard' %}">Back to dashboard</a>
+    <a href="{% url 'profile' user.username %}">Back to profile</a>
+
+{% endblock content %}

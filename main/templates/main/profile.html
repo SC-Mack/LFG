@@ -1,18 +1,42 @@
 <!--main/templates/profile.html-->
 
-{% extends 'base.html' %}
-
-{% block title %}Profile{% endblock title %}
-
+{% extends 'base.html' %} {% block title %}Profile{% endblock title %} 
 {% block content %}
+<div>
+  <h2>Profile for {{user.username}}</h2>
+</div>
+<div>
+  <div>
     <div>
-        <h2>Profile for {{user.username}}</h2>
+      <p>Email:</p>
+      <p>{{ user.email }}</p>
     </div>
     <div>
-        <form method="post" action="">
-            {% csrf_token %}
-            {{ user_form.as_p }}
-        </form>
+      <p>Intro Line:</p>
+      <p>{{ user.intro }}</p>
     </div>
+    <div>
+      <p>Bio:</p>
+      <p>{{ user.bio }}</p>
+    </div>
+    <div>
+      <p>Current Game:</p>
+      <p>{{ user.current_game }}</p>
+    </div>
+    <div>
+      <p>Play Style:</p>
+      <p>{{ user.play_style }}</p>
+    </div>
+    <div>
+      <p>Rating:</p>
+      <p>{{ user.rating }}</p>
+    </div>
+  </div>
+  <div>
+    <p>Reviews:</p>
+  </div>
+</div>
+<a href="{% url 'dashboard' %}">Back to dashboard</a>
+<a href="{% url 'edit_profile' user.username %}">Edit profile</a>
 
 {% endblock content %}
