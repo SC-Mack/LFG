@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 
-from .models import CustomUser
+from .models import CustomUser, OwnedGame, WishGame
 from .forms import CustomUserCreationForm, CustomUserForm
 
 def dashboard(request):

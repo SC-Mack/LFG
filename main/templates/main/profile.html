@@ -35,8 +35,16 @@
   <div>
     <p>Reviews:</p>
   </div>
+  {% for review in reviews %}
+  <div>
+    <p>{{ review.date_time }}</p>
+    <p>{{ review.comment }}</p>
+    <p>{{ review.score }}</p>
+  </div>
+  {% endfor %}
 </div>
 <a href="{% url 'dashboard' %}">Back to dashboard</a>
+
 <a href="{% url 'edit_profile' user.username %}">Edit profile</a>
 
 {% endblock content %}
