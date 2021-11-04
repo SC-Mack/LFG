@@ -24,13 +24,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
-class OwnedGame(models.Model):
-    owner = models.ForeignKey(CustomUser, on_delete=CASCADE)
-    api_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    
 class WishGame(models.Model):
     wisher = models.ForeignKey(CustomUser, on_delete=CASCADE)
-    api_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    
+    api_id = models.IntegerField(unique=True)

@@ -9,4 +9,7 @@ urlpatterns = [
     path('accounts/register/', views.register, name='register'),
     path('accounts/<username>', views.profile, name='profile'),
     path('accounts/edit/<username>', views.edit_profile, name='edit_profile'),
+    path('addToList/', views.addToList, name='addToList'),
+    path('getWishedId/', views.getWishedId, name='getWishedId'),
+    path('removeGame/', views.removeGame, name='removeGame'),
 ]

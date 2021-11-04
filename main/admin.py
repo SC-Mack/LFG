@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import CustomUser, OwnedGame, WishGame
+from .models import CustomUser, WishGame
 
 admin.site.register(CustomUser)
-admin.site.register(OwnedGame)
 admin.site.register(WishGame)

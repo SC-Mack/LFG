@@ -1,16 +1,20 @@
 <!--main/templates/registration/login.html-->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<div class="fg-style">
+  <h2>Login</h2>
 
-{% block content %}
-<h2>Login</h2>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Login" class="btn btn-primary button" />
+  </form>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-</form>
-
-<a href="{% url 'dashboard' %}">Back to home</a>
-<a href="{% url 'register' %}">Register</a>
+  <div>
+    <a href="{% url 'dashboard' %}">Back to home</a>
+    </div>
+    <div>
+      <a href="{% url 'register' %}">Register</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

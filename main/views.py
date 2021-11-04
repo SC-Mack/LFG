@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib import messages
@@ -5,7 +6,9 @@ from django.urls import reverse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 
-from .models import CustomUser, OwnedGame, WishGame
+import json
+
+from .models import CustomUser, WishGame
 from .forms import CustomUserCreationForm, CustomUserForm
 
 def dashboard(request):
@@ -63,3 +66,31 @@ def change_password(request):
     return render(request, 'registration/change_password.html', {
         'form': form
     })
+    
+@login_required
+def addToList(request):
+    if request.method =='POST':
+        data = json.loads(request.body)
+        WishGame.objects.create(
+            wisher = request.user,
+            api_id = data.get('game')
+        )
+        return render(request, 'main/dashboard.html')
+    
+@login_required
+def removeGame(request):
+    data = json.loads(request.body)
+    api_id = data.get('game')
+    WishGame.objects.get(api_id=api_id).delete()
+    return render(request, 'main/dashboard.html')
+    
+@login_required
+def getWishedId(request):
+    id_objects = WishGame.objects.all()
+    ids = []
+    for id_object in id_objects:
+        ids.append(id_object.api_id)
+    data = {
+        'api_id': ids
+    }
+    return JsonResponse(data)

@@ -2,34 +2,44 @@
 
 {% extends 'base.html' %}
 {% block content %}
+{% csrf_token %}
 <div id="app">
-  <div class="d-flex flex-column pt-4 mr-3 fg-style aligns-items-center justify-content-center">
+  <div class="d-flex flex-column p-4 mr-3 fg-style aligns-items-center justify-content-center">
     <div class="">
       <label for="search" class="fs-4">Search for a game by name:</label>
     </div>
     <div class="mb-4">
       <input type="text" v-model="searchTerm" id="search" name="search">
-      <button v-on:click="searchGame">Search</button>
+      <button v-on:click="searchGame" class="button btn btn-primary ms-1">Search</button>
     </div>
   </div>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 m-4 g-4">
     <div v-for="game in searchResults" class="col">
       <div class="card" style="box-shadow: 0 5px 10px #354F52;">
         <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
-        <div class="card-body ">
+        <div class="card-body">
           <h5 class="card-title fs-2">[[ game.name ]]</h5>
           <p class="card-text">
           <p>
             Release Date: [[ game.released ]]
           </p>
-          <p>
-            Genre: [[ game.genres.name ]]
-          </p>
+          Genre(s):
+          <ul>
+            <li v-for="genre in game.genres">
+              [[ genre.name ]]
+            </li>
+          </ul>
           <p>
             Platform(s):
+            <ul>
+              <li v-for="platform in game.platforms">
+                [[ platform.platform.name ]]
+              </li>
+            </ul>
           </p>
           </p>
-          <a href="#" v-on:click="addToList (game)" class="btn btn-primary">Add to Wishlist</a>
+          </p>
+          <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
         </div>
       </div>
     </div>
@@ -39,34 +49,43 @@
       {% if user.is_authenticated %}
       <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
         Games on your wishlist:</div>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div v-for="game in gamesSevenAgoList" class="col">
-          <div class="card" style="box-shadow: 0 5px 10px #354F52;">
-            <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
-            <div class="card-body">
-              <h5 class="card-title fs-2">[[ game.name ]]</h5>
-              <p class="card-text">
-              <p>
-                Release Date: [[ game.released ]]
-              </p>
-              <p>
-                Genre: [[ game.genres.name ]]
-              </p>
-              <p>
-                Platform(s):
-              </p>
-              </p>
-              <a href="#" v-on:click="addToList (game)" class="btn btn-primary">Add to Wishlist</a>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div v-for="game in wishlistGames" class="col">
+            <div class="card" style="box-shadow: 0 5px 10px #354F52;">
+              <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
+              <div class="card-body">
+                <h5 class="card-title fs-2">[[ game.name ]]</h5>
+                <p class="card-text">
+                <p>
+                  Release Date: [[ game.released ]]
+                </p>
+                Genre(s):
+                <ul>
+                  <li v-for="genre in game.genres">
+                    [[ genre.name ]]
+                  </li>
+                </ul>
+                <p>
+                  Platform(s):
+                  <ul>
+                    <li v-for="platform in game.platforms">
+                      [[ platform.platform.name ]]
+                    </li>
+                  </ul>
+                </p>
+                </p>
+                </p>
+                <a v-on:click="removeFromList (game.id)" class="btn button btn-primary">Remove from Wishlist</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       {% endif %}
     </div>
     <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
-      Games released in the last 7 days:</div>
+      Games released today:</div>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div v-for="game in gamesSevenAheadList" class="col">
+      <div v-for="game in gamesTodayList" class="col">
         <div class="card" style="box-shadow: 0 5px 10px #354F52;">
           <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
           <div class="card-body">
@@ -75,14 +94,56 @@
             <p>
               Release Date: [[ game.released ]]
             </p>
-            <p>
-              Genre: [[ game.genres.name ]]
-            </p>
+            Genre(s):
+            <ul>
+              <li v-for="genre in game.genres">
+                [[ genre.name ]]
+              </li>
+            </ul>
             <p>
               Platform(s):
+              <ul>
+                <li v-for="platform in game.platforms">
+                  [[ platform.platform.name ]]
+                </li>
+              </ul>
             </p>
             </p>
-            <a href="#" v-on:click="addToList (game)" class="btn btn-primary">Add to Wishlist</a>
+            </p>
+            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
+      Games released in the last 7 days:</div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div v-for="game in gamesSevenAgoList" class="col">
+        <div class="card" style="box-shadow: 0 5px 10px #354F52;">
+          <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
+          <div class="card-body">
+            <h5 class="card-title fs-2">[[ game.name ]]</h5>
+            <p class="card-text">
+            <p>
+              Release Date: [[ game.released ]]
+            </p>
+            Genre(s):
+            <ul>
+              <li v-for="genre in game.genres">
+                [[ genre.name ]]
+              </li>
+            </ul>
+            <p>
+              Platform(s):
+              <ul>
+                <li v-for="platform in game.platforms">
+                  [[ platform.platform.name ]]
+                </li>
+              </ul>
+            </p>
+            </p>
+            </p>
+            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
           </div>
         </div>
       </div>
@@ -99,15 +160,23 @@
             <p>
               Release Date: [[ game.released ]]
             </p>
-            <p>
-              Genre: [[ game.genres.name ]]
-            </p>
+            Genre(s):
+            <ul>
+              <li v-for="genre in game.genres">
+                [[ genre.name ]]
+              </li>
+            </ul>
             <p>
               Platform(s):
+              <ul>
+                <li v-for="platform in game.platforms">
+                  [[ platform.platform.name ]]
+                </li>
+              </ul>
             </p>
             </p>
             </p>
-            <a href="#" v-on:click="addToList (game)" class="btn btn-primary">Add to Wishlist</a>
+            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
           </div>
         </div>
       </div>
