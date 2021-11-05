@@ -50,6 +50,11 @@
       {% if user.is_authenticated %}
       <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
         Games on your wishlist:</div>
+        <div v-if="wishlistGames.length == 0" class="text-center">
+          <p class="fs-4 p-4">
+            Add games to your wishlist to have them appear here!
+          </p>
+        </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div v-for="game in wishlistGames" class="col">
             <div class="card" style="box-shadow: 0 5px 10px #354F52;">
