@@ -32,7 +32,7 @@ const App = {
     },
     removeFromList(game) {
       axios({
-        method: "post",
+        method: "delete",
         url: "/removeGame/",
         data: {
           game,
@@ -42,7 +42,6 @@ const App = {
         },
       })
         .then(() => this.getWishedId())
-        .then(() => this.getWishlistGames());
     },
     addToList(game) {
       axios({
