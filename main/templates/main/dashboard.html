@@ -48,7 +48,7 @@
     <div style="background: linear-gradient(to bottom, rgba(202, 210, 197), rgba(202, 210, 197, .3));">
     <div  class="p-4">
       {% if user.is_authenticated %}
-      <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
+      <div style="font-family: 'Press Start 2P', cursive" class="fs-3 mt-5 mb-3 text-center text-decoration-underline">
         Games on your wishlist:</div>
         <div v-if="wishlistGames.length == 0" class="text-center">
           <p class="fs-4 p-4">
@@ -88,7 +88,7 @@
         </div>
       {% endif %}
     </div>
-    <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
+    <div style="font-family: 'Press Start 2P', cursive" class="fs-3 mt-5 mb-3 text-center text-decoration-underline">
       Games released today:</div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesTodayList" class="col">
@@ -121,7 +121,7 @@
         </div>
       </div>
     </div>
-    <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
+    <div style="font-family: 'Press Start 2P', cursive" class="fs-3 mt-5 mb-3 text-center text-decoration-underline">
       Games released in the last 7 days:</div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesSevenAgoList" class="col">
@@ -154,7 +154,7 @@
         </div>
       </div>
     </div>
-    <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
+    <div style="font-family: 'Press Start 2P', cursive" class="fs-3 mt-5 mb-3 text-center text-decoration-underline">
       Games releasing in the next 7 days:</div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesSevenAheadList" class="col">
