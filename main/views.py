@@ -82,7 +82,6 @@ def removeGame(request):
     data = json.loads(request.body)
     api_id = data.get('game')
     WishGame.objects.get(api_id=api_id).delete()
-    request.session.modified=True
     return render(request, 'main/dashboard.html')
     
 @login_required
