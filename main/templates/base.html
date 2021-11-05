@@ -65,15 +65,15 @@
           style="font-family: 'Acme', sans-serif"
         >
           <div class="fs-5">
-            <div>Welcome,</div>
+            <div class="fw-bold">Welcome,</div>
             <div>{{ user.username|default:'Noob' }}!</div>
           </div>
           {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}">Logout</a>
-          <a href="{% url 'change_password' %}">Change Password</a>
+          <a href="{% url 'logout' %}"class="text-dark">Logout</a>
+          <a href="{% url 'change_password' %}"class="text-dark">Change Password</a>
           {% else %}
-          <a href="{% url 'login' %}">Login</a>
-          <a href="{% url 'register' %}">Register</a>
+          <a href="{% url 'login' %}"class="text-dark">Login</a>
+          <a href="{% url 'register' %}"class="text-dark">Register</a>
           {% endif %}
         </div>
       </div>
@@ -81,19 +81,19 @@
     {% block content %} {% endblock %}
     <footer class="fg-style pt-4">
       <div class="container text-end">
-        <a href="#" class="fs-4">Top</a>
+        <a href="#" class="fs-4 text-dark">Top</a>
       </div>
       <div class="container text-center">
         <div class="row">
-          <a href="https://www.twitch.tv/slaynnplays">Creator Twitch</a>
+          <a href="https://www.twitch.tv/slaynnplays" class="text-dark">Creator Twitch</a>
         </div>
         <div class="row">
-          <a href="https://www.youtube.com/channel/UCgmotILNLZgEPMP0S35D56w"
+          <a href="https://www.youtube.com/channel/UCgmotILNLZgEPMP0S35D56w" class="text-dark"
             >Creator YouTube</a
           >
         </div>
         <div class="row">
-          <a href="https://github.com/SC-Mack">Creator GitHub</a>
+          <a href="https://github.com/SC-Mack" class="text-dark">Creator GitHub</a>
         </div>
       </div>
     </footer>

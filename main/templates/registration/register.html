@@ -7,13 +7,13 @@
   <form method="post">
     {% csrf_token %} 
     {{form.as_p}}
-    <input type="submit" value="Register" class="btn btn-primary button" />
+    <input type="submit" value="Register" class="btn btn-secondary button" />
   </form>
   <div>
-    <a href="{% url 'login' %}">Back to login</a>
+    <a href="{% url 'login' %}" class="text-dark">Back to login</a>
   </div>
   <div>
-    <a href="{% url 'dashboard' %}">Back to home</a>
+    <a href="{% url 'dashboard' %}" class="text-dark">Back to home</a>
   </div>
 </div>
 {% endblock %}

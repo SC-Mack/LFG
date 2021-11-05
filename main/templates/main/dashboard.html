@@ -5,12 +5,12 @@
 {% csrf_token %}
 <div id="app">
   <div class="d-flex flex-column p-4 mr-3 aligns-items-center justify-content-center" style="background: linear-gradient(to top, rgba(202, 210, 197), rgba(202, 210, 197, .3));">
-    <div class="">
+    <div>
       <label for="search" class="fs-4">Search for a game by name:</label>
     </div>
     <div class="mb-4">
       <input type="text" v-model="searchTerm" id="search" name="search">
-      <button v-on:click="searchGame" class="button btn btn-primary ms-1">Search</button>
+      <button v-on:click="searchGame" class="button btn btn-secondary ms-1">Search</button>
     </div>
   </div>
   <div class="row row-cols-1 row-cols-md-3 m-4 g-4">
@@ -39,14 +39,14 @@
           </p>
           </p>
           </p>
-          <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
+          <a v-on:click="addToList (game.id)" class="btn button btn-secondary">Add to Wishlist</a>
         </div>
       </div>
     </div>
   </div>
   <div>
     <div style="background: linear-gradient(to bottom, rgba(202, 210, 197), rgba(202, 210, 197, .3));">
-    <div>
+    <div  class="p-4">
       {% if user.is_authenticated %}
       <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
         Games on your wishlist:</div>
@@ -81,7 +81,7 @@
                 </p>
                 </p>
                 </p>
-                <a v-on:click="removeFromList (game.id)" class="btn button btn-primary">Remove from Wishlist</a>
+                <a v-on:click="removeFromList (game.id)" class="btn button btn-secondary">Remove from Wishlist</a>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
     </div>
     <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
       Games released today:</div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesTodayList" class="col">
         <div class="card" style="box-shadow: 0 5px 10px #354F52;">
           <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
@@ -116,14 +116,14 @@
             </p>
             </p>
             </p>
-            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
+            <a v-on:click="addToList (game.id)" class="btn button btn-secondary">Add to Wishlist</a>
           </div>
         </div>
       </div>
     </div>
     <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
       Games released in the last 7 days:</div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesSevenAgoList" class="col">
         <div class="card" style="box-shadow: 0 5px 10px #354F52;">
           <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
@@ -149,14 +149,14 @@
             </p>
             </p>
             </p>
-            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
+            <a v-on:click="addToList (game.id)" class="btn button btn-secondary">Add to Wishlist</a>
           </div>
         </div>
       </div>
     </div>
     <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
       Games releasing in the next 7 days:</div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
       <div v-for="game in gamesSevenAheadList" class="col">
         <div class="card" style="box-shadow: 0 5px 10px #354F52;">
           <img :src="[[ game.background_image ]]" class="card-img-top" alt="Game Picture">
@@ -182,7 +182,7 @@
             </p>
             </p>
             </p>
-            <a v-on:click="addToList (game.id)" class="btn button btn-primary">Add to Wishlist</a>
+            <a v-on:click="addToList (game.id)" class="btn button btn-secondary">Add to Wishlist</a>
           </div>
         </div>
       </div>
