@@ -1,21 +1,15 @@
 # LFG
 ## Capstone Overview
 ### What LFG is:
-LFG will be providing a platform for like-minded solo gamers to connect and play the multiplayer games they love.  Many times it can become difficult to have fun playing team based games as a solo player.
-There are certain gaming communities that label this as **'solo-queing'** and it is almost universally recognized as a negative experience.  LFG is looking to alleviate that by providing a platform that can make finding the support for your AD-Carry that much easier.
-### What LFG is not:
-LFG will not be used as a dating tool.  Much of the systems are similar to that of Tinder and other dating apps, however, every effort will be made to keep things clearly for gaming purposes.
+LFG is a wishlist tracker that allows a user to track games that have been released on multiple platforms.  There is a search functionality to find specific games by name as well as displaying games that were released on the same day.  In addition the app displays games released within 14 of the same day.  7 days prior and after.
 ## Libraries and Frameworks
 ### Back End
 - Django
-- Django Rest Framework
-- Django RestAuth
-- Giant Bomb API
-- Requests
+- RAWR API
 ### Front End
 - Vue.js 
 - Axios
-- Tailwind CSS
+- Bootstrap 5
 ## User Stories
 *These will be updated on a consistent basis*
 ### Story
@@ -63,13 +57,9 @@ As an admin I want to be able to ban or suspend users based on automated monitor
 - Avatar (image link) - Will provide default avatar images to choose from
 - IsAdmin (boolean)
 - Suspended (boolean)
-### Conversation
-- From (foreign key to User)
-- To (foregn key to user)
-### Message
-- Parent (foreign key to conversation)
-- Content(string)
-- Flagged (boolean) - Used to determine if a message is flagged for admin review
+### WishGame
+- wisher (foreign key to CustomUser)
+- api_id (integer)
 ## Schedule
 ### Week 1 - Fundamentals
 - Create models
