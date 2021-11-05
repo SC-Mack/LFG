@@ -55,7 +55,6 @@ const App = {
         },
       })
         .then(() => this.getWishedId())
-        .then(() => this.getWishlistGames());
     },
     getWishlistGames() {
       this.wishlistGames = [];
