@@ -4,7 +4,7 @@
 {% block content %}
 {% csrf_token %}
 <div id="app">
-  <div class="d-flex flex-column p-4 mr-3 fg-style aligns-items-center justify-content-center">
+  <div class="d-flex flex-column p-4 mr-3 aligns-items-center justify-content-center" style="background: linear-gradient(to top, rgba(202, 210, 197), rgba(202, 210, 197, .3));">
     <div class="">
       <label for="search" class="fs-4">Search for a game by name:</label>
     </div>
@@ -44,7 +44,8 @@
       </div>
     </div>
   </div>
-  <div class="fg-style">
+  <div>
+    <div style="background: linear-gradient(to bottom, rgba(202, 210, 197), rgba(202, 210, 197, .3));">
     <div>
       {% if user.is_authenticated %}
       <div style="font-family: 'Press Start 2P', cursive" class="fs-4 mt-5 mb-3 text-center text-decoration-underline">
@@ -180,6 +181,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>
